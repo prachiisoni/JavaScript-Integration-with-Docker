@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Docker Web UI</title>
+</head>
+
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+
+<style>
+    
+    .div1 {
+        background-color: rgba(184, 219, 231, 0.562);
+        /* opacity: 50%; */
+        height: 550px;
+        align-items: center;
+        width: 780px;
+        padding: 10px;
+        position: absolute;
+        right: 30%;
+        left: 24%;
+        bottom: 5%;
+        margin-top: 20px;
+        vertical-align: middle;
+        border: 3px solid lightblue;
+
+
+    }
+
+    .allbuttons {
+        margin-top: 12%;
+         position: relative;
+        z-index: 5;
+    }
+
+    .button {
+        border: none;
+        /* color:white; */
+        padding: 16px 32px;
+        font-size: 30px;
+        cursor: pointer;
+        margin: 10px 20px;
+
+    }
+
+    .launch {
+        background-color: rgba(0, 128, 0, 0.418);
+        color: white;
+        border: 2px solid green;
+    }
+
+    .launch:hover {
+        background-color: rgba(0, 128, 0, 0.74);
+        color: white;
+    }
+
+    .delete {
+        background-color: rgba(255, 0, 0, 0.459);
+        color: white;
+        border: 2px solid red;
+        
+
+
+    }
+
+    .delete:hover {
+        background-color: rgba(255, 0, 0, 0.774);
+        color: white;
+    }
+
+    .status {
+        background-color: rgba(0, 0, 255, 0.363);
+        color: white;
+        border: 2px solid blue;
+
+    }
+
+    .status:hover {
+        background-color: rgba(0, 0, 255, 0.719);
+        color: white;
+    }
+
+    body,
+    html {
+        margin: 0;
+        /* color: rgb(0, 0, 0); */
+
+        /* opacity: 0.5; */
+        /* background-image: url(https://miro.medium.com/max/2480/1*9hGvYE5jegHm1r_97gH-jQ.png); */
+        background-image: url(https://www.teahub.io/photos/full/162-1626543_docker-wallpaper-black-docker-background.jpg);
+        height: 100%;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+
+    }
+
+    h1 {
+        font-family: Libre Baskerville;
+        font-size: 45px;
+        color: white;
+        padding: 20px;
+        border: 2px solid black;
+        background: rgba(0, 0, 0, 0.856);
+        /* width: 650px; */
+        /* margin-left: 28%; */
+        /* margin-right: 40%; */
+    }
+
+    .div1 p {
+        opacity: 100%;
+        color: black;
+        font-size: 10;
+
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0px 0px;
+        padding: 0px 0px;
+    }
+
+    .popup {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        z-index: 9;
+    }
+
+    .formPopup1 {
+        left: 45%;
+        top: 5%;
+        transform: translate(-50%, 5%);
+        border: 3px solid #999999;
+    }
+
+    .formPopup2 {
+        left: 45%;
+        top: 5%;
+        transform: translate(-50%, 5%);
+        border: 3px solid #999999;
+       
+    }
+
+    .formContainer1 {
+        display: none;
+        max-width: 300px;
+        padding: 20px;
+        background-color: #fff;
+        margin-bottom: 30px;
+    }
+
+    .formContainer1 input[type=text],
+    .formContainer1 input[type=text] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 20px 0;
+        border: none;
+        background: #eee;
+    }
+
+    .formContainer1 input[type=text]:focus,
+    .formContainer1 input[type=text]:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+    .formContainer1 .subbtn {
+        padding: 12px 20px;
+        border: none;
+        background-color: #8ebf42;
+        color: #fff;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 15px;
+        opacity: 0.8;
+    }
+
+    .formContainer1 .backbtn {
+        background-color: #cc0000;
+        padding: 12px 20px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 15px;
+        opacity: 0.8;
+    }
+
+    .formContainer1 .subbtn:hover {
+        opacity: 1;
+    }
+
+    .formContainer1 .backbtn:hover {
+        opacity: 1;
+    }
+
+    .formContainer2 {
+        display: none;
+        max-width: 300px;
+        padding: 20px;
+        background-color: #fff;
+    }
+
+    .formContainer2 input[type=text] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 20px 0;
+        border: none;
+        background: #eee;
+    }
+
+    .formContainer2 .delbtn {
+        padding: 12px 20px;
+        border: none;
+        background-color: #8ebf42;
+        color: #fff;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 15px;
+        opacity: 0.8;
+    }
+
+    .formContainer2 .backbtn {
+        background-color: #cc0000;
+        padding: 12px 20px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 15px;
+        opacity: 0.8;
+    }
+
+    .formContainer2 .delbtn:hover {
+        opacity: 1;
+    }
+
+    .formContainer2 .backbtn:hover {
+        opacity: 1;
+    }
+
+</style>
+
+
+
+<body>
+    <h1>
+        <center> Welcome to Docker Web App </center>
+    </h1>
+
+
+
+
+
+    <div class="popup">
+        <div class="formpopup1" id="form1">
+            <div class="formContainer1" id="form11">
+                
+
+                <label for="osname">
+                    <strong>OS Name</strong>
+                </label>
+                <input type="text" id="i1" placeholder="Enter OS name" name="osname" 			required />
+
+                <label for="coname">
+                    <strong>Container Name</strong>
+                </label>
+                <input type="text" id="i2" placeholder="Enter container name" 			name='coname' required />
+
+                <button type="submit" class="subbtn" onclick="launch();">Launch</button>
+                <button type="button" class="backbtn" onclick="closeForm1()">Back</button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="popup">
+        <div class="formpopup2" id="form2">
+            <div class="formContainer2" id="form22">
+                
+
+                <label for="coname">
+                    <strong>Container Name</strong>
+                </label>
+                <input type="text" id="i3" placeholder="Enter container name" name='coname' required />
+                <button type="submit" class="delbtn" onclick="del();">Delete</button>
+                <button type="button" class="backbtn" onclick="closeForm2()">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="allbuttons">
+        <button class="button launch" id="b1" onclick="openForm1()">Launch</button><br />
+        <button class="button delete" id="b2" onclick="openForm2();">Delete</button> <br />
+        <button class="button status" id="b3" onclick="status();">Status</button>
+    </div>
+
+    <pre>
+        <div class="div1" id="output_display">
+            Output will be shown here
+        </div>
+    </pre>
+</body>
+
+<script>
+function openForm1() {
+    document.getElementById("form11").style.display = "block";
+
+}
+function closeForm1() {
+    document.getElementById("form11").style.display = "none";
+}
+
+
+function openForm2() {
+    document.getElementById("form22").style.display = "block";
+
+}
+
+function closeForm2() {
+    document.getElementById("form22").style.display = "none";
+}
+
+
+
+function launch() {
+		
+    var osname = document.getElementById("i1").value
+    var coname = document.getElementById("i2").value
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://192.168.99.102/cgi-bin/launch.py?osname=" + osname + "&coname=" + coname, true);
+    xhr.send();
+    xhr.onload = function () {
+        var output = xhr.responseText;
+        var output = output + "\n\n Container is launched ";
+
+        document.getElementById("output_display").innerHTML = output;
+    }
+}
+         
+function del() {
+    decision = confirm("Are you sure you want to Delete this container");
+    if (decision == true) {
+        coname = document.getElementById("i3").value
+        xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://192.168.99.102/cgi-bin/delete.py?n=' + coname, 			true);
+        xhr.send();
+
+        xhr.onload = function () {
+            output = xhr.responseText;
+            output = "Container " + output + " Deleted";
+
+            document.getElementById("output_display").innerHTML = output;
+        }
+    }
+}
+
+function status() {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://192.168.99.102/cgi-bin/status.py", true);
+    xhr.send();
+    xhr.onload = function () {
+        var output = xhr.responseText;
+
+        document.getElementById("output_display").innerHTML = output;
+    }
+}
+
+</script>
+
+</html>
